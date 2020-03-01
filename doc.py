@@ -4,7 +4,7 @@
 # run: django-admin startproject vidly (vidly is the folder name). Remove the inner vidly file & delete the outter vidly file
 # open manage.py then click python interpreter on bottom left
 # change to the py interpreter with the virtual env name in terminal ( & C:/Users/DAVIES/.virtualenvs/django-TF6dU37Q/Scripts/python.exe c:/django/doc.py ). Run: print("hello")
-# run: & C:/Users/DAVIES/.virtualenvs/django-TF6dU37Q/Scripts/python.exe c:/django/manage.py runserver
+# run: & C:/Users/DAVIES/.virtualenvs/django-TF6dU37Q/Scripts/python.exe c:/django/manage.py runserver <<==this normally is: python manage.py runserver
 # click on the server address in terminal to open in browser
 
 #STEP 2
@@ -25,3 +25,28 @@
 # Add: path('movies/', include('movies.urls')) under the existing path
 # finally runserver 
 # add /movies in the url to see the output
+
+#STEP 4
+# Now lets create the models for the app
+# open models.py in the movies directory
+# create a class: class Genre(models.Model):
+# under Genre nest name var containing models.CharField(max_length=255)
+# Then create another class: class Movie(models.Model):
+# under Movie nest title = models.CharField(max_length=255)
+#                  release_year = models.IntegerField()
+#                  number_in_stock = models.IntegerField()
+#                  daily_rate = models.FloatField()
+#                  genre = models.ForeignKey(Genre, on_delete=models.CASCADE )  <ForeignKey is used to create a relationship btw db tables, on_delete=models.CASCADE means on deletion of the genre the movie should also be deleted>
+
+#STEP 5
+# Storing our model in a db (MIGRATIONS)
+# Install DB Browser for sqlite on your system (already have it)
+# Open DB Browser & open/drag & drop the db.sqlite3 file from the GUI into DB Browser
+# To migrate our Tables to the DB Browser sqlite, first register our movies app by:
+# Open apps.py in movies folder, copy the class name that contains AppConfig as param
+# Open settings.py in vidly folder, in the INSTALLED_APPS var add the path to MoviesConfig: 'movies.apps.MoviesConfig'
+# Open the terminal and run migration: & C:/Users/DAVIES/.virtualenvs/django-TF6dU37Q/Scripts/python.exe c:/django/manage.py makemigrations
+# Open the newly cretaed migration file: 0001_initial.py & cross-check it the operations list is ok
+# run: & C:/Users/DAVIES/.virtualenvs/django-TF6dU37Q/Scripts/python.exe c:/django/manage.py migrate <<==this normally is: python manage.py migrate
+# Now check the update made on DB Browser Sqlite & expand the movies & genre tables (in my case i had to reopen DB Broswer Sqlite, recopy & paste the db.sqlite3 file from the GUI)
+# Then click Browse Data, in Table input field click django_migrations to see the list
