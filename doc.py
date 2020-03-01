@@ -26,7 +26,7 @@
 # finally runserver 
 # add /movies in the url to see the output
 
-#STEP 4
+# STEP 4
 # Now lets create the models for the app
 # open models.py in the movies directory
 # create a class: class Genre(models.Model):
@@ -38,15 +38,24 @@
 #                  daily_rate = models.FloatField()
 #                  genre = models.ForeignKey(Genre, on_delete=models.CASCADE )  <ForeignKey is used to create a relationship btw db tables, on_delete=models.CASCADE means on deletion of the genre the movie should also be deleted>
 
-#STEP 5
-# Storing our model in a db (MIGRATIONS)
+# STEP 5 Storing our model in a db (MIGRATIONS)
 # Install DB Browser for sqlite on your system (already have it)
 # Open DB Browser & open/drag & drop the db.sqlite3 file from the GUI into DB Browser
 # To migrate our Tables to the DB Browser sqlite, first register our movies app by:
 # Open apps.py in movies folder, copy the class name that contains AppConfig as param
 # Open settings.py in vidly folder, in the INSTALLED_APPS var add the path to MoviesConfig: 'movies.apps.MoviesConfig'
-# Open the terminal and run migration: & C:/Users/DAVIES/.virtualenvs/django-TF6dU37Q/Scripts/python.exe c:/django/manage.py makemigrations
+# Open the terminal and run migration: & C:/Users/DAVIES/.virtualenvs/django-TF6dU37Q/Scripts/python.exe c:/django/manage.py makemigrations  <<==this normally is: python manage.py makemigrations
 # Open the newly cretaed migration file: 0001_initial.py & cross-check it the operations list is ok
-# run: & C:/Users/DAVIES/.virtualenvs/django-TF6dU37Q/Scripts/python.exe c:/django/manage.py migrate <<==this normally is: python manage.py migrate
+# run: & C:/Users/DAVIES/.virtualenvs/django-TF6dU37Q/Scripts/python.exe c:/django/manage.py migrate  <<==this normally is: python manage.py migrate
 # Now check the update made on DB Browser Sqlite & expand the movies & genre tables (in my case i had to reopen DB Broswer Sqlite, recopy & paste the db.sqlite3 file from the GUI)
 # Then click Browse Data, in Table input field click django_migrations to see the list
+
+# STEP 6 (Changing The Models)
+# Lets say you want to add a field 
+# Open models.py in movies folder, import timezone from django.utils
+# adding a new attribute/field to the Movie class eg: date_created = models.DateTimeField(default=timezone.now)
+# run: & C:/Users/DAVIES/.virtualenvs/django-TF6dU37Q/Scripts/python.exe c:/django/manage.py makemigrations
+# run: & C:/Users/DAVIES/.virtualenvs/django-TF6dU37Q/Scripts/python.exe c:/django/manage.py migrate 
+# Now check the update made on DB Browser Sqlite  (in my case i had to reopen DB Broswer Sqlite, recopy & paste the db.sqlite3 file from the GUI)
+# BONUS: To know the EXACT sql statement used to create a table eg 0001_initial.py run:
+#        & C:/Users/DAVIES/.virtualenvs/django-TF6dU37Q/Scripts/python.exe c:/django/manage.py sqlmigrate movies 0001      <<==this normally is: python manage.py sqlmigrate movies 0001 
