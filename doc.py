@@ -59,3 +59,16 @@
 # Now check the update made on DB Browser Sqlite  (in my case i had to reopen DB Broswer Sqlite, recopy & paste the db.sqlite3 file from the GUI)
 # BONUS: To know the EXACT sql statement used to create a table eg 0001_initial.py run:
 #        & C:/Users/DAVIES/.virtualenvs/django-TF6dU37Q/Scripts/python.exe c:/django/manage.py sqlmigrate movies 0001      <<==this normally is: python manage.py sqlmigrate movies 0001 
+
+# STEP 7 (Admin)
+# Now we want to allow the staff/admin to populate the db with list of movies, so we need to create an admin panel for this
+# run: & C:/Users/DAVIES/.virtualenvs/django-TF6dU37Q/Scripts/python.exe c:/django/manage.py runserver
+# add "/admin" to the url in localhost:8000
+# without closing the running terminal, open a new terminal window and run: & C:/Users/DAVIES/.virtualenvs/django-TF6dU37Q/Scripts/python.exe c:/django/manage.py createsuperuser     <<== this normally is: python manage.py createsuperuser 
+# Enter user name, email, password, confirm password
+# Go back to admin login page on localhost & login with the created details
+# open admin.py file in movies folder
+# import Genre, Movie from .models
+# Type in: admin.site.register(Genre)
+#          admin.site.register(Movie)
+# Go back to the admin dashboard & refresh the page (in my case had to restart the server)
